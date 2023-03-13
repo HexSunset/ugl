@@ -4,11 +4,11 @@ pub struct Canvas {
     width: u64,
     height: u64,
     size: usize,
-    pixels: Vec<Color3>,
+    pixels: Vec<Color>,
 }
 
 impl Canvas {
-    pub fn new<U: Into<u64>>(w: U, h: U, p: Color3) -> Self {
+    pub fn new<U: Into<u64>>(w: U, h: U, p: Color) -> Self {
 	let width: u64 = w.into();
 	let height: u64 = h.into();
 	let size = (width * height) as usize;
@@ -21,14 +21,14 @@ impl Canvas {
 	}
     }
 
-    fn get_linear(&self, i: usize) -> Option<Color3> {
+    fn get_linear(&self, i: usize) -> Option<Color> {
 	match self.pixels.get(i) {
 	    Some(p) => Some(*p),
 	    None => None,
 	}
     }
 
-    pub fn get(&self, x: usize, y: usize) -> Option<Color3> {
+    pub fn get(&self, x: usize, y: usize) -> Option<Color> {
 	self.get_linear(x * y)
     }
 }
